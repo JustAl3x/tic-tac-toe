@@ -4,3 +4,42 @@ body {
     background-color: lightgrey;
     text-align: center;
 }
+
+h1 {
+    font-size: 3rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#board {
+    margin: auto;
+    width: 50%;
+    height: 40rem;
+
+    border: 6px solid black;
+    border-radius: 5px;
+
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+#new-game-button {
+    margin: 1em 0 0 0;
+    padding: 1rem 1rem;
+
+    font-size: 1rem;
+}
+
+.board-square {
+    border: 3px solid black;
+
+    text-align: center;
+    font-size: 7rem;    
+}
