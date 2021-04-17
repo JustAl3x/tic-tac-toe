@@ -1,20 +1,26 @@
 const XSymbol = "X";
 const OSymbol = "O";
 
-const game = new GameController(PlayerFactory("Player 1", XSymbol), PlayerFactory("Player 2", OSymbol));
+const PlayerFactory = (name, symbol) => {   
+    return { name, symbol };
+};
 
-const GameController = ((playerOne, playerTwo) => {
-    currentPlayer = playerOne;
+//Controls game flow
+const GameController = (() => {
+    const playerOne = PlayerFactory("Player 1", XSymbol);
+    const playerTwo = PlayerFactory("Player 2", OSymbol);   
+    let currentPlayer = playerOne;
 
     const nextPlayer = () => {
-        if (currentPlayer === playerOne) {
+        if (currentPlayer == playerOne) {
             currentPlayer = playerTwo;
         } else {
             currentPlayer = playerOne;
         }
+        return currentPlayer;
     }
-    
-    return {currentPlayer, nextPlayer}
+
+    return {currentPlayer, nextPlayer};
 })();
 
 const GameBoard = (() => {
@@ -56,15 +62,14 @@ const DisplayController = (() => {
 
 })();
 
-const PlayerFactory = (name, symbol) => {   
-    return { name, symbol };
-};
 
 const squares = document.querySelectorAll(".board-square");
-
 squares.forEach(square => {
     square.addEventListener("click", () => {
-        square.innerHTML = GameController.currentPlayer.symbol;
-        GameController.nextPlayer();
+        let symbol = GameController.currentPlayer.symbol;
+        square.innerHTML = symbol;
+        console.log(GameController.nextPlayer());
     })
 });
+
+
