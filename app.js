@@ -1,10 +1,20 @@
 const XSymbol = "X";
 const OSymbol = "O";
 
-const Game = ((playerOne, playerTwo) => {
+const game = new GameController(PlayerFactory("Player 1", XSymbol), PlayerFactory("Player 2", OSymbol));
+
+const GameController = ((playerOne, playerTwo) => {
     currentPlayer = playerOne;
 
-    return {currentPlayer}
+    const nextPlayer = () => {
+        if (currentPlayer === playerOne) {
+            currentPlayer = playerTwo;
+        } else {
+            currentPlayer = playerOne;
+        }
+    }
+    
+    return {currentPlayer, nextPlayer}
 })();
 
 const GameBoard = (() => {
@@ -36,9 +46,10 @@ const GameLogic = (() => {
     return {convertIndexToColumn, convertIndexToRow}
 })();
 
+//Responsible for updating the page
 const DisplayController = (() => {
     const updateSquare = (index) => {
-
+        document.querySelector("")
     }
     
     return { updateSquare }
@@ -49,3 +60,11 @@ const PlayerFactory = (name, symbol) => {
     return { name, symbol };
 };
 
+const squares = document.querySelectorAll(".board-square");
+
+squares.forEach(square => {
+    square.addEventListener("click", () => {
+        square.innerHTML = GameController.currentPlayer.symbol;
+        GameController.nextPlayer();
+    })
+});

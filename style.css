@@ -20,8 +20,8 @@ button:focus {
 
 #board {
     margin: auto;
-    width: 50%;
-    height: 40rem;
+    width: 40%;
+    height: 30rem;
 
     border: 6px solid black;
     border-radius: 5px;
